@@ -1,0 +1,83 @@
+.mha-figure {
+  margin: 28px 0;
+}
+.mha-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.head-demo {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.head-demo__row {
+  display: grid;
+  grid-template-columns: 76px repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 10px;
+}
+.head-demo__row > strong {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.head-demo__row > span {
+  padding: 12px 8px;
+  border-radius: 5px;
+  color: var(--ink);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.head-demo__row b {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 17px;
+}
+.weight-high { background: color-mix(in srgb, var(--accent) 42%, var(--surface)); }
+.weight-medium { background: color-mix(in srgb, var(--accent) 17%, var(--surface)); }
+.weight-low { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.article-body .tensor-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.article-body .tensor-flow li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 12px;
+  background: var(--surface);
+}
+.tensor-flow span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.tensor-flow strong {
+  font-size: 16px;
+}
+.article-body .tensor-flow code {
+  align-self: flex-start;
+  margin-top: 3px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .head-demo { padding: 12px; gap: 8px; }
+  .head-demo__row { grid-template-columns: 60px repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .head-demo__row > span { padding: 10px 4px; }
+  .head-demo__row > strong { font-size: 10px; }
+  .article-body .tensor-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+}
+
