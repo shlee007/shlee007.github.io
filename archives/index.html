@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="dive'Log 的文章归档。" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1013" media="(prefers-color-scheme: dark)" />
+    <title>Archive · dive'Log</title>
+    <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("diveli-theme");
+        } catch {}
+        const theme =
+          saved === "light" || saved === "dark"
+            ? saved
+            : matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <script src="/assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到正文</a>
+
+    <header class="site-header">
+      <div class="shell site-header__inner">
+        <a class="brand" href="/" aria-label="dive'Log 首页">
+          <span class="brand__mark" aria-hidden="true">D</span>
+          <span class="brand__name">dive'Log</span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <ul>
+            <li><a href="/posts/">Posts</a></li>
+            <li><a href="/archives/" aria-current="page">Archive</a></li>
+            <li><a href="/tags/">Tags</a></li>
+          </ul>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换到深色模式" title="切换到深色模式">
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56"></path>
+          </svg>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="page shell">
+      <header class="page-header">
+        <h1 class="page-title">Archive</h1>
+        <p class="page-lead">按时间归档</p>
+      </header>
+      <div class="empty-state">
+        <p class="empty-state__title">还没有可归档的文章。</p>
+        <a class="empty-state__link" href="/">← 回到首页</a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 <a href="/">dive'Log</a></span>
+      <span>
+        Powered by
+        <a href="https://pages.github.com" rel="noopener noreferrer" target="_blank">GitHub Pages</a>
+      </span>
+    </footer>
+  </body>
+</html>

@@ -124,9 +124,45 @@ figure {
 
 .site-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  column-gap: 24px;
+  min-height: 60px;
+}
+
+.site-nav {
+  margin-left: auto;
+}
+
+.site-nav ul {
+  display: flex;
   gap: 24px;
-  height: 60px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: block;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--ink);
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .brand {
@@ -152,16 +188,7 @@ figure {
   line-height: 1;
 }
 
-.brand__mark--small {
-  width: 18px;
-  height: 18px;
-  border-radius: 5px;
-  font-size: 12px;
-  vertical-align: -3px;
-}
-
 .theme-toggle {
-  margin-left: auto;
   display: inline-grid;
   place-items: center;
   width: 34px;
@@ -238,7 +265,7 @@ figure {
 .hero__motto {
   color: var(--ink);
   font-family: var(--font-cjk-serif);
-  margin-top: 10px;
+  margin-top: 16px;
   font-size: clamp(36px, 4vw, 44px);
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -246,7 +273,7 @@ figure {
 }
 
 .hero__topics {
-  margin-top: 14px;
+  margin-top: 8px;
   color: var(--muted);
   font-family: var(--font-body);
   font-size: 12px;
@@ -276,33 +303,82 @@ figure {
   object-position: 50% 22%;
 }
 
+/* Pages */
+
+#main-content.page {
+  align-content: start;
+  padding: 64px 0 24px;
+}
+
+.page-title {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.page-lead {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.empty-state {
+  margin-top: 32px;
+  padding: 48px 24px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.empty-state__title {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.empty-state__link {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.empty-state__link:hover {
+  color: var(--ink);
+}
+
 /* Footer */
 
 .site-footer {
   margin-top: 48px;
-  border-top: 1px solid var(--line);
+  padding: 13px 24px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
 }
 
-.site-footer__inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 26px 0 34px;
+.site-footer span {
+  margin-inline: 1px;
 }
 
-.site-footer__inner p:first-child {
-  color: var(--ink);
-  font-weight: 700;
+.site-footer span:last-child {
+  white-space: nowrap;
 }
 
 .site-footer a {
+  border-bottom: 1px solid var(--muted);
+  color: inherit;
   text-decoration: none;
 }
 
 .site-footer a:hover {
-  color: var(--accent);
+  border-bottom-color: var(--ink);
+  color: var(--ink);
 }
 
 @media (max-width: 760px) {
@@ -311,14 +387,26 @@ figure {
   }
 
   .site-header__inner {
-    gap: 14px;
-    height: 54px;
+    column-gap: 14px;
+    min-height: 54px;
   }
 
-  .brand__name {
-    display: none;
+  .site-nav ul {
+    gap: 18px;
   }
 
+  .site-nav a {
+    font-size: 14px;
+  }
+
+  #main-content.page {
+    padding-top: 40px;
+  }
+
+  .empty-state {
+    margin-top: 24px;
+    padding: 36px 18px;
+  }
 
   .hero {
     padding: 36px 0 40px;
@@ -333,12 +421,12 @@ figure {
   }
 
   .hero__motto {
-    margin-top: 8px;
+    margin-top: 12px;
     font-size: 30px;
   }
 
   .hero__topics {
-    margin-top: 12px;
+    margin-top: 6px;
     font-size: 11px;
   }
 
@@ -346,16 +434,21 @@ figure {
     width: 104px;
     height: 104px;
   }
+}
 
-
-
-
-  .site-footer {
-    margin-top: 32px;
+@media (max-width: 420px) {
+  .site-header__inner {
+    padding: 8px 0 2px;
   }
 
-  .site-footer__inner {
-    flex-direction: column;
-    gap: 6px;
+  .theme-toggle {
+    order: 1;
+    margin-left: auto;
+  }
+
+  .site-nav {
+    order: 2;
+    flex-basis: 100%;
+    margin-left: 0;
   }
 }

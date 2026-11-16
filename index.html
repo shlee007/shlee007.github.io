@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="diveli's blog：李帅（diveli）关于 CUDA、模型架构、分布式训练、Kernel 与强化学习的学习笔记。" />
+    <meta name="description" content="dive'Log：李帅（diveli）关于 CUDA、模型架构、分布式训练、Kernel 与强化学习的学习笔记。" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f1013" media="(prefers-color-scheme: dark)" />
-    <title>diveli's blog</title>
-    <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <title>dive'Log</title>
+    <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
     <script>
       (() => {
         let saved = null;
@@ -26,16 +26,24 @@
         document.documentElement.dataset.theme = theme;
       })();
     </script>
+    <script src="/assets/site.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到正文</a>
 
     <header class="site-header">
       <div class="shell site-header__inner">
-        <a class="brand" href="/" aria-label="diveli's blog 首页">
-          <span class="brand__mark" aria-hidden="true">d</span>
-          <span class="brand__name">diveli's blog</span>
+        <a class="brand" href="/" aria-label="dive'Log 首页">
+          <span class="brand__mark" aria-hidden="true">D</span>
+          <span class="brand__name">dive'Log</span>
         </a>
+        <nav class="site-nav" aria-label="主导航">
+          <ul>
+            <li><a href="/posts/">Posts</a></li>
+            <li><a href="/archives/">Archive</a></li>
+            <li><a href="/tags/">Tags</a></li>
+          </ul>
+        </nav>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换到深色模式" title="切换到深色模式">
           <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="3.5"></circle>
@@ -52,43 +60,24 @@
       <section class="hero shell" aria-labelledby="home-title">
         <div class="hero__inner">
           <figure class="portrait">
-            <img src="assets/avatar.png" alt="diveli 的头像" width="128" height="128" />
+            <img src="/assets/avatar.png" alt="diveli 的头像" width="128" height="128" />
           </figure>
           <div class="hero__content">
-            <h1 id="home-title" class="visually-hidden">diveli's blog</h1>
+            <h1 id="home-title" class="visually-hidden">dive'Log</h1>
             <p class="signature">李帅 | diveli</p>
-            <p class="hero__motto">向内求，生生不息</p>
             <p class="hero__topics"><span>LLM SYSTEM&nbsp;·</span> <span>REINFORCEMENT LEARNING</span></p>
+            <p class="hero__motto">向内求，生生不息</p>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="shell site-footer__inner">
-        <p><span class="brand__mark brand__mark--small" aria-hidden="true">d</span> diveli's blog</p>
-        <p>李帅 | diveli · Hosted on <a href="https://pages.github.com">GitHub Pages</a></p>
-      </div>
+      <span>&copy; 2026 <a href="/">dive'Log</a></span>
+      <span>
+        Powered by
+        <a href="https://pages.github.com" rel="noopener noreferrer" target="_blank">GitHub Pages</a>
+      </span>
     </footer>
-
-    <script>
-      (() => {
-        const root = document.documentElement;
-        const toggle = document.querySelector("[data-theme-toggle]");
-        const label = () => {
-          const text = root.dataset.theme === "dark" ? "切换到浅色模式" : "切换到深色模式";
-          toggle.setAttribute("aria-label", text);
-          toggle.setAttribute("title", text);
-        };
-        label();
-        toggle.addEventListener("click", () => {
-          root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
-          try {
-            localStorage.setItem("diveli-theme", root.dataset.theme);
-          } catch {}
-          label();
-        });
-      })();
-    </script>
   </body>
 </html>
