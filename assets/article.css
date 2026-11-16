@@ -1,4 +1,9 @@
 /* Long-form articles share the site's color and typography tokens. */
+.article-page {
+  --toc-width: 220px;
+  --article-gap: 48px;
+}
+
 .article-view #main-content {
   display: block;
   padding-top: 52px;
@@ -7,7 +12,7 @@
 
 .article-header {
   max-width: 760px;
-  margin-left: 284px;
+  margin-left: calc(var(--toc-width) + var(--article-gap));
   padding-bottom: 36px;
 }
 
@@ -48,14 +53,16 @@
 
 .article-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-columns: var(--toc-width) minmax(0, 1fr);
+  grid-template-areas: "toc content";
   align-items: start;
-  gap: 64px;
+  gap: var(--article-gap);
   border-top: 1px solid var(--line);
   padding-top: 36px;
 }
 
 .article-body {
+  grid-area: content;
   min-width: 0;
   font-size: 16px;
   line-height: 1.95;
@@ -245,10 +252,17 @@
 }
 
 .article-toc-desktop {
+  grid-area: toc;
+  width: 100%;
+  max-width: var(--toc-width);
+  min-width: 0;
+  align-self: start;
   position: sticky;
   top: 92px;
   max-height: calc(100vh - 124px);
   overflow-y: auto;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
   scrollbar-width: thin;
   padding-right: 8px;
 }
@@ -327,6 +341,7 @@
 
   .article-layout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "content";
     gap: 0;
   }
 
