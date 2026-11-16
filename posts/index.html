@@ -59,11 +59,18 @@
     <main id="main-content" class="page shell">
       <header class="page-header">
         <h1 class="page-title">Posts</h1>
-        <p class="page-lead">文章列表</p>
+        <p class="page-lead">文章列表 · 1 篇</p>
       </header>
-      <div class="empty-state">
-        <p class="empty-state__title">还没有文章。</p>
-        <a class="empty-state__link" href="/">← 回到首页</a>
+      <div class="post-list">
+        <article class="post-card">
+          <div class="post-meta">
+            <time datetime="2026-11-16">2026.11.16</time>
+            <a href="/tags/#model-architecture">Model Architecture</a>
+          </div>
+          <h2 class="post-card__title"><a href="/posts/transformer-overview/">Transformer 概述</a></h2>
+          <p class="post-card__description">从 Token、Embedding 和 Self-Attention 出发，梳理 Transformer 的核心结构、训练与生成过程，以及 KV Cache 和现代模型的改进。</p>
+          <a class="post-card__read" href="/posts/transformer-overview/">阅读全文 <span aria-hidden="true">→</span></a>
+        </article>
       </div>
     </main>
 

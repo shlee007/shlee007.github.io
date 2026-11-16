@@ -59,12 +59,24 @@
     <main id="main-content" class="page shell">
       <header class="page-header">
         <h1 class="page-title">Tags</h1>
-        <p class="page-lead">按标签浏览</p>
+        <p class="page-lead">按标签浏览 · 2 个标签</p>
       </header>
-      <div class="empty-state">
-        <p class="empty-state__title">还没有标签。</p>
-        <a class="empty-state__link" href="/">← 回到首页</a>
-      </div>
+      <nav class="tag-cloud" aria-label="文章标签">
+        <a class="tag-chip" href="#model-architecture">Model Architecture <span>1</span></a>
+        <a class="tag-chip" href="#transformer">Transformer <span>1</span></a>
+      </nav>
+      <section class="tag-group" aria-labelledby="model-architecture">
+        <h2 id="model-architecture" class="tag-group__title">Model Architecture</h2>
+        <ul class="archive-list">
+          <li><time datetime="2026-11-16">2026.11.16</time><a href="/posts/transformer-overview/">Transformer 概述</a></li>
+        </ul>
+      </section>
+      <section class="tag-group" aria-labelledby="transformer">
+        <h2 id="transformer" class="tag-group__title">Transformer</h2>
+        <ul class="archive-list">
+          <li><time datetime="2026-11-16">2026.11.16</time><a href="/posts/transformer-overview/">Transformer 概述</a></li>
+        </ul>
+      </section>
     </main>
 
     <footer class="site-footer">
