@@ -1,0 +1,361 @@
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f1f1ee;
+  --ink: #18191c;
+  --text: #333333;
+  --muted: #6f737a;
+  --faint: #a0a3a8;
+  --line: #dddcd5;
+  --line-strong: #c3c2ba;
+  --portrait-shadow: 0 2px 10px rgb(0 0 0 / 5%);
+  --accent: #e45858;
+  --accent-hover: #c94141;
+  --accent-soft: #fbe9e7;
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Songti SC", "Noto Serif CJK SC", serif;
+  --font-body:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-cjk-serif:
+    "Songti SC", "Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, SimSun, serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --shell: 1040px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1013;
+  --surface: #15171b;
+  --surface-soft: #1c1f24;
+  --ink: #f0f1f3;
+  --text: #c8cbd1;
+  --muted: #979ba4;
+  --faint: #6c7079;
+  --line: #2a2d34;
+  --line-strong: #3c4049;
+  --portrait-shadow: none;
+  --accent: #f07c7c;
+  --accent-hover: #ff9d9d;
+  --accent-soft: #3a1e20;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 84px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 16px;
+  z-index: 10;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.shell {
+  width: min(100% - 48px, var(--shell));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 60px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand__mark--small {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  font-size: 12px;
+  vertical-align: -3px;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
+.theme-toggle__moon,
+:root[data-theme="dark"] .theme-toggle__sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle__moon {
+  display: block;
+}
+
+/* Hero */
+
+#main-content {
+  flex: 1;
+  display: grid;
+  align-content: center;
+}
+
+.hero {
+  padding: 56px 0 60px;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+}
+
+.signature {
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.hero__motto {
+  color: var(--ink);
+  font-family: var(--font-cjk-serif);
+  margin-top: 10px;
+  font-size: clamp(36px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.hero__topics {
+  margin-top: 14px;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+}
+
+.hero__topics span {
+  white-space: nowrap;
+}
+
+.portrait {
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--portrait-shadow);
+}
+
+.portrait img {
+  display: block;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+/* Footer */
+
+.site-footer {
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px 0 34px;
+}
+
+.site-footer__inner p:first-child {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: min(100% - 36px, var(--shell));
+  }
+
+  .site-header__inner {
+    gap: 14px;
+    height: 54px;
+  }
+
+  .brand__name {
+    display: none;
+  }
+
+
+  .hero {
+    padding: 36px 0 40px;
+  }
+
+  .hero__inner {
+    gap: 18px;
+  }
+
+  .signature {
+    font-size: 15px;
+  }
+
+  .hero__motto {
+    margin-top: 8px;
+    font-size: 30px;
+  }
+
+  .hero__topics {
+    margin-top: 12px;
+    font-size: 11px;
+  }
+
+  .portrait img {
+    width: 104px;
+    height: 104px;
+  }
+
+
+
+
+  .site-footer {
+    margin-top: 32px;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
