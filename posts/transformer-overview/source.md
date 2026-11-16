@@ -12,13 +12,13 @@ Transformer 是一种处理序列数据的神经网络架构，由 Google 在 20
 
 
 
-## **为什么需要 Transformer？**
+## 1. **为什么需要 Transformer？**
 
 Transformer 不再逐词传递信息，而是让每个词直接观察整个序列，因此它更擅长捕获长距离关系，也更适合 GPU 并行计算。
 
 
 
-## **Transformer 整体结构**
+## 2. **Transformer 整体结构**
 
 原始 Transformer 是一个Encoder-Decoder架构：
 
@@ -28,7 +28,7 @@ Encoder 负责理解输入，Decoder 负责生成输出，现代模型不一定�
 
 
 
-## **第一步：文本变成 Token**
+## 3. **第一步：文本变成 Token**
 
 模型不能直接处理文字，需要先使用 tokenizer 将文本切分成 Token。
 
@@ -60,7 +60,7 @@ unbelievable
 
 
 
-## **Token Embedding：把 Token 变成向量**
+## 4. **Token Embedding：把 Token 变成向量**
 
 每个 Token ID 会被映射为一个高维向量：
 
@@ -86,7 +86,7 @@ $$h_i = TokenEmbedding_i + PositionEmbedding_i$$
 
 
 
-## **核心：Self-Attention**
+## 5. **核心：Self-Attention**
 
 自注意力要解决的问题是：
 
@@ -159,7 +159,7 @@ $$\operatorname{Attention}(Q,K,V) = \operatorname{softmax} \left( \frac{QK^T}{\s
 
 
 
-## **Multi-Head Attention：多头注意力**
+## 6. **Multi-Head Attention：多头注意力**
 
 只进行一次注意力计算，可能只能捕获一种关系。Transformer 因此同时计算多个“注意力头”：
 
@@ -179,7 +179,7 @@ $$d_{head}=4096/32=128$$
 
 
 
-## **前馈神经网络 FFN**
+## 7. **前馈神经网络 FFN**
 
 注意力负责在不同 Token 之间交换信息，之后，每个 Token 会独立通过同一个前馈网络：
 
@@ -198,7 +198,7 @@ $$FFN(x)=\sigma(xW_1+b_1)W_2+b_2$$
 
 
 
-## **残差连接与归一化**
+## 8. **残差连接与归一化**
 
 每个模块外面都有残差连接：
 
@@ -234,7 +234,7 @@ Pre-Norm 的残差通路 $x$ 是一条干净的恒等路径（identity path）�
 
 
 
-## **模型怎样生成下一个 Token？**
+## 9. **模型怎样生成下一个 Token？**
 
 计算注意力权重：
 
@@ -294,7 +294,7 @@ $$P(token)=\operatorname{softmax}(logits)=\frac{e^{logit_i}} {\sum_j e^{logit_j}
 
 
 
-## **Transformer 怎么训练？**
+## 10. **Transformer 怎么训练？**
 
 Decoder-only 语言模型通常使用“预测下一个Token”的目标。
 
@@ -331,7 +331,7 @@ $$L=-\sum_t \log P(x_t\mid x_{<t})$$
 
 
 
-## 推理时的采样方法
+## 11. 推理时的采样方法
 
 模型得到概率后，不一定永远选择概率最大的 Token。
 
@@ -353,7 +353,7 @@ $$P_i= \operatorname{softmax} \left( \frac{logit_i}{T} \right)$$
 
 
 
-## KV Cache 为什么能加速生成？
+## 12. KV Cache 为什么能加速生成？
 
 生成第 100 个 token 时，前面 99 个 token 的 key 和 value 已经计算过。
 
@@ -369,7 +369,7 @@ $$P_i= \operatorname{softmax} \left( \frac{logit_i}{T} \right)$$
 
 
 
-## Transformer 的计算复杂度
+## 13. Transformer 的计算复杂度
 
 标准自注意力需要构造一个 n x n 的注意力矩阵，其中 n 是序列长度。
 
@@ -391,7 +391,7 @@ $$O(n^2)$$
 
 
 
-## 现代大模型对原始Transformer的改进
+## 14. 现代大模型对原始Transformer的改进
 
 现在的 Transformer 通常与 2017 年版本有所不同：
 
@@ -409,7 +409,7 @@ MoE（Mixture of Experts）会准备多个“专家网络”，每个 Token 只�
 
 
 
-## Transformer 的优势
+## 15. Transformer 的优势
 
 主要优势包括：
 
@@ -432,7 +432,7 @@ MoE（Mixture of Experts）会准备多个“专家网络”，每个 Token 只�
 
 
 
-## Transformer 的局限
+## 16. Transformer 的局限
 
 它也存在明显问题：
 
@@ -445,7 +445,7 @@ MoE（Mixture of Experts）会准备多个“专家网络”，每个 Token 只�
 
 
 
-## 一句话理解Transformer
+## 17. 一句话理解Transformer
 
 可以把 Transformer 概括为：
 
@@ -472,7 +472,7 @@ $$文本 \rightarrow Token \rightarrow Embedding \rightarrow 多层Transformer \
 
 
 
-## 输入处理子结构
+## 1. 输入处理子结构
 
 **Input/Output Embedding**
 
@@ -486,7 +486,7 @@ $$文本 \rightarrow Token \rightarrow Embedding \rightarrow 多层Transformer \
 
 
 
-## Encoder 层（每层包含 2 个子层）
+## 2. Encoder 层（每层包含 2 个子层）
 
 **Multi-Head Self-Attention（多头自注意力）**
 
@@ -528,7 +528,7 @@ $$x_{l+1} = x_l + \text{Sublayer}\big(\text{LayerNorm}(x_l)\big)$$
 
 
 
-## Decoder 层（每层包含 3 个子层）
+## 3. Decoder 层（每层包含 3 个子层）
 
 1. Masked Multi-Head Self-Attention（带掩码的多头自注意力）- 掩码防止看到未来 token
 2. Encoder-Decoder (Cross) Attention（交叉注意力） - Query 来自 Decoder，Key/Value 来自 Encoder 输出。
@@ -538,7 +538,7 @@ $$x_{l+1} = x_l + \text{Sublayer}\big(\text{LayerNorm}(x_l)\big)$$
 
 
 
-## 注意力机制内部子结构
+## 4. 注意力机制内部子结构
 
 Multi-Head Attention 进一步拆解为：
 
@@ -552,7 +552,7 @@ $$\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$
 
 
 
-## 前馈网络（FFN）内部
+## 5. 前馈网络（FFN）内部
 
 两层线性变换 + 非线性激活：
 
@@ -562,14 +562,14 @@ $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 
 
 
-## 输出子结构
+## 6. 输出子结构
 
 - Linear 层：映射到词表维度
 - Softmax：输出下一个 token 的概率分布
 
 
 
-## 汇总（核心可复用组件）
+## 7. 汇总（核心可复用组件）
 
 | 组件 | 作用 |
 |-|-|
@@ -585,7 +585,7 @@ $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 
 当前主流大模型 (GPT、LLaMA、Qwen、DeepSeek、Claude、Gemini 等) 几乎都采用 Decoder-only 架构。
 
-## 三种架构路线对比
+## 1. 三种架构路线对比
 
 | 架构 | 代表模型 | 作用 | 典型场景 |
 |-|-|-|-|
@@ -595,7 +595,7 @@ $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 
 结论：当今主流的通用大语言模型（LLM）=Decoder-only
 
-## 为什么是 Decoder-only
+## 2. 为什么是 Decoder-only
 
 1. **任务范式统一为「下一个 token 预测」**Decoder-only 用自回归方式做 **Next Token Prediction**，几乎所有任务（问答、翻译、写代码、推理）都能统一成「续写」。这种简洁的训练目标让模型易于规模化，无需为不同任务设计不同结构。
 2. **训练效率更高**

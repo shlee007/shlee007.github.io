@@ -72,15 +72,15 @@
       <details class="article-toc">
         <summary>本文目录</summary>
         <nav aria-label="文章目录"><ol class="toc-list">
-  <li class="toc-level-2"><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-transformer">为什么需要 Transformer？</a>
+  <li class="toc-level-2"><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-transformer">1. 为什么需要 Transformer？</a>
   </li>
-  <li class="toc-level-2"><a href="#transformer-%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84">Transformer 整体结构</a>
+  <li class="toc-level-2"><a href="#transformer-%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84">2. Transformer 整体结构</a>
   </li>
-  <li class="toc-level-2"><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E6%96%87%E6%9C%AC%E5%8F%98%E6%88%90-token">第一步：文本变成 Token</a>
+  <li class="toc-level-2"><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E6%96%87%E6%9C%AC%E5%8F%98%E6%88%90-token">3. 第一步：文本变成 Token</a>
   </li>
-  <li class="toc-level-2"><a href="#token-embedding-%E6%8A%8A-token-%E5%8F%98%E6%88%90%E5%90%91%E9%87%8F">Token Embedding：把 Token 变成向量</a>
+  <li class="toc-level-2"><a href="#token-embedding-%E6%8A%8A-token-%E5%8F%98%E6%88%90%E5%90%91%E9%87%8F">4. Token Embedding：把 Token 变成向量</a>
   </li>
-  <li class="toc-level-2"><a href="#%E6%A0%B8%E5%BF%83-self-attention">核心：Self-Attention</a>
+  <li class="toc-level-2"><a href="#%E6%A0%B8%E5%BF%83-self-attention">5. 核心：Self-Attention</a>
     <ol class="toc-children">
       <li class="toc-level-3"><a href="#5-1-%E8%AE%A1%E7%AE%97%E7%9B%B8%E5%85%B3%E6%80%A7">5.1 计算相关性</a>
       </li>
@@ -90,53 +90,53 @@
       </li>
     </ol>
   </li>
-  <li class="toc-level-2"><a href="#multi-head-attention-%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B">Multi-Head Attention：多头注意力</a>
+  <li class="toc-level-2"><a href="#multi-head-attention-%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B">6. Multi-Head Attention：多头注意力</a>
   </li>
-  <li class="toc-level-2"><a href="#%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-ffn">前馈神经网络 FFN</a>
+  <li class="toc-level-2"><a href="#%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-ffn">7. 前馈神经网络 FFN</a>
   </li>
-  <li class="toc-level-2"><a href="#%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%BD%92%E4%B8%80%E5%8C%96">残差连接与归一化</a>
+  <li class="toc-level-2"><a href="#%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%BD%92%E4%B8%80%E5%8C%96">8. 残差连接与归一化</a>
   </li>
-  <li class="toc-level-2"><a href="#%E6%A8%A1%E5%9E%8B%E6%80%8E%E6%A0%B7%E7%94%9F%E6%88%90%E4%B8%8B%E4%B8%80%E4%B8%AA-token">模型怎样生成下一个 Token？</a>
+  <li class="toc-level-2"><a href="#%E6%A8%A1%E5%9E%8B%E6%80%8E%E6%A0%B7%E7%94%9F%E6%88%90%E4%B8%8B%E4%B8%80%E4%B8%AA-token">9. 模型怎样生成下一个 Token？</a>
   </li>
-  <li class="toc-level-2"><a href="#transformer-%E6%80%8E%E4%B9%88%E8%AE%AD%E7%BB%83">Transformer 怎么训练？</a>
+  <li class="toc-level-2"><a href="#transformer-%E6%80%8E%E4%B9%88%E8%AE%AD%E7%BB%83">10. Transformer 怎么训练？</a>
   </li>
-  <li class="toc-level-2"><a href="#%E6%8E%A8%E7%90%86%E6%97%B6%E7%9A%84%E9%87%87%E6%A0%B7%E6%96%B9%E6%B3%95">推理时的采样方法</a>
+  <li class="toc-level-2"><a href="#%E6%8E%A8%E7%90%86%E6%97%B6%E7%9A%84%E9%87%87%E6%A0%B7%E6%96%B9%E6%B3%95">11. 推理时的采样方法</a>
   </li>
-  <li class="toc-level-2"><a href="#kv-cache-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%8A%A0%E9%80%9F%E7%94%9F%E6%88%90">KV Cache 为什么能加速生成？</a>
+  <li class="toc-level-2"><a href="#kv-cache-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%8A%A0%E9%80%9F%E7%94%9F%E6%88%90">12. KV Cache 为什么能加速生成？</a>
   </li>
-  <li class="toc-level-2"><a href="#transformer-%E7%9A%84%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6">Transformer 的计算复杂度</a>
+  <li class="toc-level-2"><a href="#transformer-%E7%9A%84%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6">13. Transformer 的计算复杂度</a>
   </li>
-  <li class="toc-level-2"><a href="#%E7%8E%B0%E4%BB%A3%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AF%B9%E5%8E%9F%E5%A7%8Btransformer%E7%9A%84%E6%94%B9%E8%BF%9B">现代大模型对原始Transformer的改进</a>
+  <li class="toc-level-2"><a href="#%E7%8E%B0%E4%BB%A3%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AF%B9%E5%8E%9F%E5%A7%8Btransformer%E7%9A%84%E6%94%B9%E8%BF%9B">14. 现代大模型对原始Transformer的改进</a>
   </li>
-  <li class="toc-level-2"><a href="#transformer-%E7%9A%84%E4%BC%98%E5%8A%BF">Transformer 的优势</a>
+  <li class="toc-level-2"><a href="#transformer-%E7%9A%84%E4%BC%98%E5%8A%BF">15. Transformer 的优势</a>
   </li>
-  <li class="toc-level-2"><a href="#transformer-%E7%9A%84%E5%B1%80%E9%99%90">Transformer 的局限</a>
+  <li class="toc-level-2"><a href="#transformer-%E7%9A%84%E5%B1%80%E9%99%90">16. Transformer 的局限</a>
   </li>
-  <li class="toc-level-2"><a href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%90%86%E8%A7%A3transformer">一句话理解Transformer</a>
+  <li class="toc-level-2"><a href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%90%86%E8%A7%A3transformer">17. 一句话理解Transformer</a>
   </li>
   <li class="toc-level-1"><a href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84">整体架构</a>
     <ol class="toc-children">
-      <li class="toc-level-2"><a href="#%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E5%AD%90%E7%BB%93%E6%9E%84">输入处理子结构</a>
+      <li class="toc-level-2"><a href="#%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E5%AD%90%E7%BB%93%E6%9E%84">1. 输入处理子结构</a>
       </li>
-      <li class="toc-level-2"><a href="#encoder-%E5%B1%82-%E6%AF%8F%E5%B1%82%E5%8C%85%E5%90%AB-2-%E4%B8%AA%E5%AD%90%E5%B1%82">Encoder 层（每层包含 2 个子层）</a>
+      <li class="toc-level-2"><a href="#encoder-%E5%B1%82-%E6%AF%8F%E5%B1%82%E5%8C%85%E5%90%AB-2-%E4%B8%AA%E5%AD%90%E5%B1%82">2. Encoder 层（每层包含 2 个子层）</a>
       </li>
-      <li class="toc-level-2"><a href="#decoder-%E5%B1%82-%E6%AF%8F%E5%B1%82%E5%8C%85%E5%90%AB-3-%E4%B8%AA%E5%AD%90%E5%B1%82">Decoder 层（每层包含 3 个子层）</a>
+      <li class="toc-level-2"><a href="#decoder-%E5%B1%82-%E6%AF%8F%E5%B1%82%E5%8C%85%E5%90%AB-3-%E4%B8%AA%E5%AD%90%E5%B1%82">3. Decoder 层（每层包含 3 个子层）</a>
       </li>
-      <li class="toc-level-2"><a href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%86%85%E9%83%A8%E5%AD%90%E7%BB%93%E6%9E%84">注意力机制内部子结构</a>
+      <li class="toc-level-2"><a href="#%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%86%85%E9%83%A8%E5%AD%90%E7%BB%93%E6%9E%84">4. 注意力机制内部子结构</a>
       </li>
-      <li class="toc-level-2"><a href="#%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C-ffn-%E5%86%85%E9%83%A8">前馈网络（FFN）内部</a>
+      <li class="toc-level-2"><a href="#%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9C-ffn-%E5%86%85%E9%83%A8">5. 前馈网络（FFN）内部</a>
       </li>
-      <li class="toc-level-2"><a href="#%E8%BE%93%E5%87%BA%E5%AD%90%E7%BB%93%E6%9E%84">输出子结构</a>
+      <li class="toc-level-2"><a href="#%E8%BE%93%E5%87%BA%E5%AD%90%E7%BB%93%E6%9E%84">6. 输出子结构</a>
       </li>
-      <li class="toc-level-2"><a href="#%E6%B1%87%E6%80%BB-%E6%A0%B8%E5%BF%83%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%BB%84%E4%BB%B6">汇总（核心可复用组件）</a>
+      <li class="toc-level-2"><a href="#%E6%B1%87%E6%80%BB-%E6%A0%B8%E5%BF%83%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%BB%84%E4%BB%B6">7. 汇总（核心可复用组件）</a>
       </li>
     </ol>
   </li>
   <li class="toc-level-1"><a href="#%E5%BD%93%E5%89%8D%E4%B8%BB%E6%B5%81%E6%9E%B6%E6%9E%84-decoder-only">当前主流架构（Decoder-only）</a>
     <ol class="toc-children">
-      <li class="toc-level-2"><a href="#%E4%B8%89%E7%A7%8D%E6%9E%B6%E6%9E%84%E8%B7%AF%E7%BA%BF%E5%AF%B9%E6%AF%94">三种架构路线对比</a>
+      <li class="toc-level-2"><a href="#%E4%B8%89%E7%A7%8D%E6%9E%B6%E6%9E%84%E8%B7%AF%E7%BA%BF%E5%AF%B9%E6%AF%94">1. 三种架构路线对比</a>
       </li>
-      <li class="toc-level-2"><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-decoder-only">为什么是 Decoder-only</a>
+      <li class="toc-level-2"><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF-decoder-only">2. 为什么是 Decoder-only</a>
       </li>
     </ol>
   </li>
@@ -150,13 +150,13 @@
 <p>让序列中的每个词直接观察其他词，并自动判断哪些词更重要。</p>
 </blockquote>
 <p>这套机制叫做<strong>自注意力（Self-Attention）。</strong></p>
-<h2 id="为什么需要-transformer"><strong>为什么需要 Transformer？</strong></h2>
+<h2 id="为什么需要-transformer">1. <strong>为什么需要 Transformer？</strong></h2>
 <p>Transformer 不再逐词传递信息，而是让每个词直接观察整个序列，因此它更擅长捕获长距离关系，也更适合 GPU 并行计算。</p>
-<h2 id="transformer-整体结构"><strong>Transformer 整体结构</strong></h2>
+<h2 id="transformer-整体结构">2. <strong>Transformer 整体结构</strong></h2>
 <p>原始 Transformer 是一个Encoder-Decoder架构：</p>
 <p><em>输入文本 -&gt; 分词 Tokenization -&gt; 词向量+位置信息 -&gt; Encoder 编码器 -&gt; 上下文表示 -&gt; Decoder 解码器 -&gt; 下一个词的概率 -&gt; 输出文本</em></p>
 <p>Encoder 负责理解输入，Decoder 负责生成输出，现代模型不一定同时使用两者。</p>
-<h2 id="第一步-文本变成-token"><strong>第一步：文本变成 Token</strong></h2>
+<h2 id="第一步-文本变成-token">3. <strong>第一步：文本变成 Token</strong></h2>
 <p>模型不能直接处理文字，需要先使用 tokenizer 将文本切分成 Token。</p>
 <p>例如：</p>
 <pre><code class="language-Plain">“我喜欢机器学习”
@@ -175,7 +175,7 @@
 → [&quot;un&quot;, &quot;believ&quot;, &quot;able&quot;]
 </code></pre>
 <p>这样可以用有限词表表示几乎所有文本。</p>
-<h2 id="token-embedding-把-token-变成向量"><strong>Token Embedding：把 Token 变成向量</strong></h2>
+<h2 id="token-embedding-把-token-变成向量">4. <strong>Token Embedding：把 Token 变成向量</strong></h2>
 <p>每个 Token ID 会被映射为一个高维向量：</p>
 <div class="math-block" data-tex="x_i = E[token_i]"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>=</mo><mi>E</mi><mo stretchy="false">[</mo><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><msub><mi>n</mi><mi>i</mi></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">x_i = E[token_i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mopen">[</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></div>
 <p>假设 hidden size 为 4096，<strong>一个 Token 会变成包含 4096 个数字的向量</strong>。</p>
@@ -189,7 +189,7 @@
 <p>因此实际输入是：</p>
 <div class="math-block" data-tex="h_i = TokenEmbedding_i + PositionEmbedding_i"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mi>i</mi></msub><mo>=</mo><mi>T</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>E</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>d</mi><mi>d</mi><mi>i</mi><mi>n</mi><msub><mi>g</mi><mi>i</mi></msub><mo>+</mo><mi>P</mi><mi>o</mi><mi>s</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>E</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>d</mi><mi>d</mi><mi>i</mi><mi>n</mi><msub><mi>g</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">h_i = TokenEmbedding_i + PositionEmbedding_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord mathnormal">mb</span><span class="mord mathnormal">e</span><span class="mord mathnormal">dd</span><span class="mord mathnormal">in</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mord mathnormal">os</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="mord mathnormal">mb</span><span class="mord mathnormal">e</span><span class="mord mathnormal">dd</span><span class="mord mathnormal">in</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></div>
 <p>原始 Transformer 使用正弦位置编码，<strong>现代大模型则经常使用 RoPE（旋转位置编码），把位置信息作用到注意力中的 Query 和 Key 上。</strong></p>
-<h2 id="核心-self-attention"><strong>核心：Self-Attention</strong></h2>
+<h2 id="核心-self-attention">5. <strong>核心：Self-Attention</strong></h2>
 <p>自注意力要解决的问题是：</p>
 <blockquote>
 <p>对当前 Token 来说，序列中的其他 Token 各有多重要？</p>
@@ -307,7 +307,7 @@ s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1828em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">T</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span></span></span></span></span></div>
 <p>因此，每个 Token 的新表示都融合了整个上下文的信息。</p>
-<h2 id="multi-head-attention-多头注意力"><strong>Multi-Head Attention：多头注意力</strong></h2>
+<h2 id="multi-head-attention-多头注意力">6. <strong>Multi-Head Attention：多头注意力</strong></h2>
 <p>只进行一次注意力计算，可能只能捕获一种关系。Transformer 因此同时计算多个“注意力头”：</p>
 <div class="math-block" data-tex="head_i=\operatorname{Attention}(Q_i,K_i,V_i)"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>h</mi><mi>e</mi><mi>a</mi><msub><mi>d</mi><mi>i</mi></msub><mo>=</mo><mi mathvariant="normal">Attention</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>Q</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>K</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>V</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">head_i=\operatorname{Attention}(Q_i,K_i,V_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal">e</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">Attention</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div>
 <p>然后拼接：</p>
@@ -316,7 +316,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>需要注意，这些功能不是人为分配的，而是模型训练时自己学到的。</p>
 <p>如果模型维度是4096，共有32个头，那么每个头的维度通常是：</p>
 <div class="math-block" data-tex="d_{head}=4096/32=128"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>d</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow></msub><mo>=</mo><mn>4096</mn><mi mathvariant="normal">/</mi><mn>32</mn><mo>=</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">d_{head}=4096/32=128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4096/32</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">128</span></span></span></span></span></div>
-<h2 id="前馈神经网络-ffn"><strong>前馈神经网络 FFN</strong></h2>
+<h2 id="前馈神经网络-ffn">7. <strong>前馈神经网络 FFN</strong></h2>
 <p>注意力负责在不同 Token 之间交换信息，之后，每个 Token 会独立通过同一个前馈网络：</p>
 <div class="math-block" data-tex="FFN(x)=\sigma(xW_1+b_1)W_2+b_2"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mi>F</mi><mi>N</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>x</mi><msub><mi>W</mi><mn>1</mn></msub><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">)</mo><msub><mi>W</mi><mn>2</mn></msub><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">FFN(x)=\sigma(xW_1+b_1)W_2+b_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></div>
 <p>原始 Transformer 使用 ReLU，现代模型常使用 GELU 或 SwiGLU。</p>
@@ -327,7 +327,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>FFN：对读取的信息进行加工和记忆</li>
 </ul>
 <p>很多研究也认为，FFN 中存储了大量模型学到的事实和模式。</p>
-<h2 id="残差连接与归一化"><strong>残差连接与归一化</strong></h2>
+<h2 id="残差连接与归一化">8. <strong>残差连接与归一化</strong></h2>
 <p>每个模块外面都有残差连接：</p>
 <div class="math-block" data-tex="y=x+\operatorname{Module}(x)"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi mathvariant="normal">Module</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=x+\operatorname{Module}(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">Module</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span></div>
 <p>这样可以：</p>
@@ -355,7 +355,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <div class="math-block" data-tex="y=x'+\operatorname{FFN}(\operatorname{Norm}(x'))"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><msup><mi>x</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>+</mo><mi mathvariant="normal">FFN</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi mathvariant="normal">Norm</mi><mo>⁡</mo><mo stretchy="false">(</mo><msup><mi>x</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y=x&#x27;+\operatorname{FFN}(\operatorname{Norm}(x&#x27;))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8852em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0519em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">FFN</span></span><span class="mopen">(</span><span class="mop"><span class="mord mathrm">Norm</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8019em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">))</span></span></span></span></span></div>
 <p>一个大模型会堆叠几十甚至上百层这样的结构。</p>
 <p>Pre-Norm 的残差通路 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 是一条干净的恒等路径（identity path），从头到尾没有被 LayerNorm  干扰，梯度可以无衰减地直接回传。这正是 Pre-LN <strong>训练更稳定、能堆很深、且通常不需要 learning rate warmup 的原因</strong>。</p>
-<h2 id="模型怎样生成下一个-token"><strong>模型怎样生成下一个 Token？</strong></h2>
+<h2 id="模型怎样生成下一个-token">9. <strong>模型怎样生成下一个 Token？</strong></h2>
 <p>计算注意力权重：</p>
 <div class="math-block" data-tex="A=\operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mo>=</mo><mi mathvariant="normal">softmax</mi><mo>⁡</mo><mrow><mo fence="true">(</mo><mfrac><mrow><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup></mrow><msqrt><msub><mi>d</mi><mi>k</mi></msub></msqrt></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">A=\operatorname{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.4684em;vertical-align:-0.95em;"></span><span class="mop"><span class="mord mathrm">softmax</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5183em;"><span style="top:-2.2528em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8572em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.8172em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
 c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
@@ -398,7 +398,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <pre><code class="language-Plain">法国的首都是 → 巴黎
 法国的首都是巴黎 → 继续预测下一个 Token
 </code></pre>
-<h2 id="transformer-怎么训练"><strong>Transformer 怎么训练？</strong></h2>
+<h2 id="transformer-怎么训练">10. <strong>Transformer 怎么训练？</strong></h2>
 <p>Decoder-only 语言模型通常使用“预测下一个Token”的目标。</p>
 <p>假设训练文本是：</p>
 <pre><code class="language-Plain">我 喜欢 学习 人工智能
@@ -421,7 +421,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>重复大量次数</li>
 </ol>
 <p>模型并不是把资料原封不动存成数据库，而是在参数中学习语言模式、概念关联和统计规律。</p>
-<h2 id="推理时的采样方法">推理时的采样方法</h2>
+<h2 id="推理时的采样方法">11. 推理时的采样方法</h2>
 <p>模型得到概率后，不一定永远选择概率最大的 Token。</p>
 <p>常见方法包括：</p>
 <ul>
@@ -438,7 +438,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">T&gt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>：更多样、更随机；</li>
 <li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T\to0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>：接近直接选择最大概率。</li>
 </ul>
-<h2 id="kv-cache-为什么能加速生成">KV Cache 为什么能加速生成？</h2>
+<h2 id="kv-cache-为什么能加速生成">12. KV Cache 为什么能加速生成？</h2>
 <p>生成第 100 个 token 时，前面 99 个 token 的 key 和 value 已经计算过。</p>
 <p>如果每次全部重新计算，会非常浪费。因此推理系统会缓存历史 token 的 K 和 V：</p>
 <ul>
@@ -448,7 +448,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 <p>这就是 KV Cache。</p>
 <p>它能显著加快生成，但上下文越长，KV Cache占用的显存也越大。现代模型会使用 MQA 或 GQA，让多个 Query 头共享较少的 Key/Value 头，以减少内存占用。</p>
-<h2 id="transformer-的计算复杂度">Transformer 的计算复杂度</h2>
+<h2 id="transformer-的计算复杂度">13. Transformer 的计算复杂度</h2>
 <p>标准自注意力需要构造一个 n x n 的注意力矩阵，其中 n 是序列长度。</p>
 <p>时间和内存复杂度大致为：</p>
 <div class="math-block" data-tex="O(n^2)"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div>
@@ -496,7 +496,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </tr>
 </tbody>
 </table></div>
-<h2 id="现代大模型对原始transformer的改进">现代大模型对原始Transformer的改进</h2>
+<h2 id="现代大模型对原始transformer的改进">14. 现代大模型对原始Transformer的改进</h2>
 <p>现在的 Transformer 通常与 2017 年版本有所不同：</p>
 <div class="article-table" role="region" aria-label="可横向滚动的表格" tabindex="0"><table>
 <thead>
@@ -545,7 +545,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </tbody>
 </table></div>
 <p>MoE（Mixture of Experts）会准备多个“专家网络”，每个 Token 只激活其中少数几个，从而增加参数量，但不让计算量同比增长。</p>
-<h2 id="transformer-的优势">Transformer 的优势</h2>
+<h2 id="transformer-的优势">15. Transformer 的优势</h2>
 <p>主要优势包括：</p>
 <ul>
 <li>并行训练效率高</li>
@@ -560,7 +560,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <p>这和文本的：</p>
 <p>文本 → Token → 向量 → Transformer</p>
 <p>本质非常相似。</p>
-<h2 id="transformer-的局限">Transformer 的局限</h2>
+<h2 id="transformer-的局限">16. Transformer 的局限</h2>
 <p>它也存在明显问题：</p>
 <ul>
 <li>标准注意力对序列长度是平方复杂度；</li>
@@ -569,7 +569,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>语言模型优化的是“预测合理文本”，不天然保证事实正确，具有幻觉；</li>
 </ul>
 <p>所谓“幻觉”，本质上与训练目标有关：模型倾向于生成统计上连贯的后续文本，而不是先查询一个绝对可靠的事实数据库。</p>
-<h2 id="一句话理解transformer">一句话理解Transformer</h2>
+<h2 id="一句话理解transformer">17. 一句话理解Transformer</h2>
 <p>可以把 Transformer 概括为：</p>
 <blockquote>
 <p>先通过 Attention 从上下文中收集信息，再通过 FFN 对信息进行加工，利用残差连接保留原始信息，重复很多层后预测下一个 token。</p>
@@ -584,7 +584,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </ul>
 <p>编码器可以一次性获取到整个序列，而解码器的词是一个一个生成的，这个过程称为自回归（auto-regressive）。</p>
 <p><em><strong>输入 -&gt; [Encoder x N] -&gt; [Decoder x N] -&gt; 输出</strong></em></p>
-<h2 id="输入处理子结构">输入处理子结构</h2>
+<h2 id="输入处理子结构">1. 输入处理子结构</h2>
 <p><strong>Input/Output Embedding</strong></p>
 <ul>
 <li>把离散 token 映射为稠密向量</li>
@@ -593,7 +593,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <ul>
 <li>注入序列顺序信息（原版用正弦/余弦函数；后续有可学习位置编码、RoPE、ALiBi 等变体）</li>
 </ul>
-<h2 id="encoder-层-每层包含-2-个子层">Encoder 层（每层包含 2 个子层）</h2>
+<h2 id="encoder-层-每层包含-2-个子层">2. Encoder 层（每层包含 2 个子层）</h2>
 <p><strong>Multi-Head Self-Attention（多头自注意力）</strong></p>
 <ul>
 <li>内部由多个缩放点积注意力(Scaled Dot-Product Attention) 并行组成</li>
@@ -618,14 +618,14 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>Pre-LN：<strong>残差通路 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>l</mi></msub></mrow><annotation encoding="application/x-tex">x_l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0197em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是一条干净的恒等路径（identity path），从头到尾没有被 LayerNorm  干扰，梯度可以无衰减地直接回传。</strong>这正是 Pre-LN 训练更稳定、能堆很深、且通常不需要 learning rate warmup 的原因。</li>
 <li>Pre-LN 结构中，最后一层输出后通常还会额外加一个 final LayerNorm，因为残差通路上累加的结果本身没有被归一化过，需要在进入输出头之前再归一化一次。</li>
 </ul>
-<h2 id="decoder-层-每层包含-3-个子层">Decoder 层（每层包含 3 个子层）</h2>
+<h2 id="decoder-层-每层包含-3-个子层">3. Decoder 层（每层包含 3 个子层）</h2>
 <ol>
 <li>Masked Multi-Head Self-Attention（带掩码的多头自注意力）- 掩码防止看到未来 token</li>
 <li>Encoder-Decoder (Cross) Attention（交叉注意力） - Query 来自 Decoder，Key/Value 来自 Encoder 输出。</li>
 <li>Position-wise Feed-Forward Network（前馈网络，FFN）</li>
 </ol>
 <p>同样每个子层都带残差连接+层归一化。</p>
-<h2 id="注意力机制内部子结构">注意力机制内部子结构</h2>
+<h2 id="注意力机制内部子结构">4. 注意力机制内部子结构</h2>
 <p>Multi-Head Attention 进一步拆解为：</p>
 <ul>
 <li>Scaled Dot-Product Attention（缩放点积注意力）：核心计算</li>
@@ -647,16 +647,16 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 <li>多头拆分/拼接：把 Q/K/V 切成 h 个头并行计算，再拼接</li>
 <li>输出投影层（Output Linear）：把拼接结果映射回模型维度</li>
 </ul>
-<h2 id="前馈网络-ffn-内部">前馈网络（FFN）内部</h2>
+<h2 id="前馈网络-ffn-内部">5. 前馈网络（FFN）内部</h2>
 <p>两层线性变换 + 非线性激活：</p>
 <div class="math-block" data-tex="\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>FFN</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>x</mi><msub><mi>W</mi><mn>1</mn></msub><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">)</mo><msub><mi>W</mi><mn>2</mn></msub><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">FFN</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></div>
 <p>（原版用 ReLU；现代模型常用 GELU、SwiGLU 等）</p>
-<h2 id="输出子结构">输出子结构</h2>
+<h2 id="输出子结构">6. 输出子结构</h2>
 <ul>
 <li>Linear 层：映射到词表维度</li>
 <li>Softmax：输出下一个 token 的概率分布</li>
 </ul>
-<h2 id="汇总-核心可复用组件">汇总（核心可复用组件）</h2>
+<h2 id="汇总-核心可复用组件">7. 汇总（核心可复用组件）</h2>
 <div class="article-table" role="region" aria-label="可横向滚动的表格" tabindex="0"><table>
 <thead>
 <tr>
@@ -689,7 +689,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </table></div>
 <h1 id="当前主流架构-decoder-only" class="article-section">当前主流架构（Decoder-only）</h1>
 <p>当前主流大模型 (GPT、LLaMA、Qwen、DeepSeek、Claude、Gemini 等) 几乎都采用 Decoder-only 架构。</p>
-<h2 id="三种架构路线对比">三种架构路线对比</h2>
+<h2 id="三种架构路线对比">1. 三种架构路线对比</h2>
 <div class="article-table" role="region" aria-label="可横向滚动的表格" tabindex="0"><table>
 <thead>
 <tr>
@@ -721,7 +721,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </tbody>
 </table></div>
 <p>结论：当今主流的通用大语言模型（LLM）=Decoder-only</p>
-<h2 id="为什么是-decoder-only">为什么是 Decoder-only</h2>
+<h2 id="为什么是-decoder-only">2. 为什么是 Decoder-only</h2>
 <ol>
 <li>
 <p><strong>任务范式统一为「下一个 token 预测」</strong>Decoder-only 用自回归方式做 <strong>Next Token Prediction</strong>，几乎所有任务（问答、翻译、写代码、推理）都能统一成「续写」。这种简洁的训练目标让模型易于规模化，无需为不同任务设计不同结构。</p>
